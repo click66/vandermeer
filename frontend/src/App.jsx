@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Logo from "./assets/logo.png";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBook, faHouse, faTable } from "@fortawesome/free-solid-svg-icons";
+import Tables from "./pages/tables";
+import SingleTable from "./pages/single-table";
+import { Link, Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="container">
+        <nav className="navigation">
+          <div className="logo">
+            <img src={Logo} />
+          </div>
+          <ul className="nav-list">
+            <li key="nav-home">
+              <Link to="/">
+                <span className="icon">
+                  <FontAwesomeIcon icon={faHouse} size="lg" />
+                </span>
+                <span className="text">Home</span>
+              </Link>
+            </li>
+            <li key="nav-tables">
+              <Link to="/tables">
+                <span className="icon">
+                  <FontAwesomeIcon icon={faTable} size="lg" />
+                </span>
+                <span className="text">Tables</span>
+              </Link>
+            </li>
+            <li key="nav-dictionary">
+              <Link to="/dictionary">
+                <span className="icon">
+                  <FontAwesomeIcon icon={faBook} size="lg" />
+                </span>
+                <span className="text">Data Dictionary</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <main className="content">
+          <Routes>
+            <Route path="/tables" element={<Tables />} />
+            <Route path="/table/:uuid" element={<SingleTable />} />
+          </Routes>
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

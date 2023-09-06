@@ -6,5 +6,8 @@ export default defineConfig({
   server: {
     host: true,
     port: 8000,
+    hmr: {
+      clientPort: 8001,
+    }
   }
 })
