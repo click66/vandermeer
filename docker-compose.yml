@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: backend
+      target: prod-runtime
+
+  frontend:
+    build:
+      context: frontend
+
+  proxy:
+    build:
+      context: proxy
+    depends_on:
+      - backend
+      - frontend

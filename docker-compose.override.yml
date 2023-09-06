@@ -1,0 +1,20 @@
+services:
+  frontend:
+    build:
+      target: dev-runtime
+    ports:
+      - 8001:8000
+    volumes:
+      - ./frontend:/app
+  
+  backend:
+    build:
+      target: dev-runtime
+    ports:
+      - 8002:8000
+    volumes:
+    - ./backend:/app
+
+  proxy:
+    ports: 
+      - 8000:8000
